@@ -1,15 +1,15 @@
 import { Schema, SchemaDefinition, SchemaOptions } from "mongoose";
 
 
-export function getSchema(definition: SchemaDefinition, schemaName: string, schemaOptions?: SchemaOptions): Schema {
+export function getSchema(definition: SchemaDefinition, schemaOptions?: SchemaOptions): Schema {
 
-	handleErrorCases(definition, schemaName);
+	handleErrorCases(definition);
 
 	return new Schema(definition, schemaOptions);
 
 }
 
-function handleErrorCases(definition: SchemaDefinition, schemaName: string) {
+function handleErrorCases(definition: SchemaDefinition) {
 
 	if (!definition) {
 	  throw new Error('Invalid argument for document parameter');
@@ -17,10 +17,6 @@ function handleErrorCases(definition: SchemaDefinition, schemaName: string) {
 
 	if (Object.keys(definition).length === 0) {
 	  throw new Error('Invalid argument, document object must contain contents');
-	}
-
-	if (!schemaName) {
-	  throw new Error('Invalid schema name, this is needed for creating a schema');
 	}
 
 }

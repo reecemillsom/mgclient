@@ -31,13 +31,13 @@ describe("Schema", () => {
 
         });
 
-        describe("when document is defined and schema name is empty", () => {
+        describe("when we have a valid document", () => {
 
-            it("will throw an error", () => {
+            it("will return schema", () => {
 
-			  expect(() =>
-				  getSchema({ name: String }, '')
-			  ).to.throw(Error, 'Invalid schema name, this is needed for creating a schema');
+                const result = getSchema({ name: String });
+
+                expect(result).to.be.instanceOf(Schema);
 
             });
 
