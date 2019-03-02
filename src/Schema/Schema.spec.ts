@@ -7,7 +7,7 @@ describe("Schema", () => {
 
     describe("when asked to get schema", () => {
 
-        describe("when a document isn't passed it will throw an error", () => {
+        describe("when definition isn't passed it will throw an error", () => {
 
 			it("will throw an error", () => {
 
@@ -19,7 +19,19 @@ describe("Schema", () => {
 
         });
 
-        describe("when document object is empty and has no keys", () => {
+        describe("when schema definition is not of type object	", () => {
+
+            it("will throw an error", () => {
+
+                expect(() =>
+					getSchema([] as any, null)
+				).to.throw(Error, 'Invalid schema type, must be an object');
+
+            });
+
+        });
+
+        describe("when definition object is empty and has no keys", () => {
 
             it("will throw an error", () => {
 
@@ -31,7 +43,7 @@ describe("Schema", () => {
 
         });
 
-        describe("when we have a valid document", () => {
+        describe("when we have a valid definition", () => {
 
             it("will return schema", () => {
 

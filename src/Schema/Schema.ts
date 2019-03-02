@@ -15,6 +15,10 @@ function handleErrorCases(definition: SchemaDefinition) {
 	  throw new Error('Invalid argument for document parameter');
 	}
 
+	if (Array.isArray(definition) || typeof definition !== 'object') {
+	  throw new Error('Invalid schema type, must be an object');
+	}
+
 	if (Object.keys(definition).length === 0) {
 	  throw new Error('Invalid argument, document object must contain contents');
 	}
