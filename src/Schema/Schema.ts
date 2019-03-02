@@ -12,7 +12,7 @@ export function getSchema(definition: SchemaDefinition, schemaOptions?: SchemaOp
 function handleErrorCases(definition: SchemaDefinition) {
 
 	if (!definition) {
-	  throw new Error('Invalid argument for document parameter');
+	  throw new Error('Invalid argument for definition parameter');
 	}
 
 	if (Array.isArray(definition) || typeof definition !== 'object') {
@@ -20,7 +20,7 @@ function handleErrorCases(definition: SchemaDefinition) {
 	}
 
 	if (Object.keys(definition).length === 0) {
-	  throw new Error('Invalid argument, document object must contain contents');
+	  throw new Error('Invalid argument, definition object must contain contents');
 	}
 
 }
