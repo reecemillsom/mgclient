@@ -13,7 +13,7 @@ describe("Schema", () => {
 
 				expect(() =>
 					getSchema(null, null)
-				).to.throw(Error, 'Invalid argument for document parameter');
+				).to.throw(Error, 'Invalid argument for definition parameter');
 
 			});
 
@@ -37,7 +37,7 @@ describe("Schema", () => {
 
                 expect(() =>
 					getSchema({} as any, null)
-				).to.throw(Error, 'Invalid argument, document object must contain contents');
+				).to.throw(Error, 'Invalid argument, definition object must contain contents');
 
             });
 
