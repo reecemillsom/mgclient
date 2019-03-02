@@ -1,0 +1,4 @@
+src/**/*.spec.ts
+--require ts-node/register
+--reporter dot
+--colours

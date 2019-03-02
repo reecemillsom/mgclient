@@ -1,0 +1,24 @@
+{
+  "name": "MongooseClient",
+  "version": "1.0.0",
+  "description": "Client for querying mongodb",
+  "main": "index.ts",
+  "author": "Reece Millsom",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^5.4.16"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/mongoose": "^5.3.20",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.3333"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "npm run tsc && mocha"
+  }
+}
