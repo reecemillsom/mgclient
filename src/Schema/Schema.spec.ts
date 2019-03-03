@@ -139,4 +139,34 @@ describe("Schema", () => {
 
 	});
 
+
+	describe("when asked to attach statics", () => {
+
+		it("will attach the static function to the schema", () => {
+
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const someFunc1 = function () {
+				console.log('some func 1');
+			};
+
+			const someFunc2 = function () {
+				console.log('some func 2');
+			};
+
+			schemaHandler.attachStatics([{
+				staticFunction: someFunc1,
+				staticName: 'someFunc1'
+			}, {
+				staticFunction: someFunc2,
+				staticName: 'someFunc2'
+			}]);
+
+			expect(schemaHandler.schema.statics.someFunc1).to.be.a('function');
+			expect(schemaHandler.schema.statics.someFunc2).to.be.a('function');
+
+		});
+
+	});
+
 });

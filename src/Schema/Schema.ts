@@ -17,6 +17,11 @@ export interface InstanceMethod {
 	methodName: string;
 }
 
+export interface StaticMethod {
+	staticFunction: Function;
+	staticName: string;
+}
+
 //TODO potentially think of better name than schema handler.
 //TODO will need a public getSchema function so user can actually return it.
 export class SchemaHandler {
@@ -44,8 +49,19 @@ export class SchemaHandler {
 			this.schema.methods[method.methodName] = method.methodFunction;
 
 		});
-		
+
 	}
+
+	public attachStatics(statics: StaticMethod[]) {
+
+		forEach(statics, stat => {
+
+			this.schema.statics[stat.staticName] = stat.staticFunction;
+
+		});
+
+	}
+
 
 	private handleSchemaInitialisation(definition: SchemaDefinition, schemaOptions?: SchemaOptions): Schema {
 
