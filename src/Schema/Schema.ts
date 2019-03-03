@@ -7,9 +7,14 @@ export enum Type {
 }
 
 export interface Virtual {
-	virtualFunction: any; //TODO this will be a function reference, see if there is a way around any type.
+	virtualFunction: Function; //TODO this will be a function reference, see if there is a way around any type.
 	virtualName: string;
 	virtualType: Type;
+}
+
+export interface InstanceMethod {
+	methodFunction: Function;
+	methodName: string;
 }
 
 //TODO potentially think of better name than schema handler.
@@ -30,6 +35,16 @@ export class SchemaHandler {
 
 		});
 
+	}
+
+	public attachMethods(methods: InstanceMethod[]) {
+
+		forEach(methods, method => {
+
+			this.schema.methods[method.methodName] = method.methodFunction;
+
+		});
+		
 	}
 
 	private handleSchemaInitialisation(definition: SchemaDefinition, schemaOptions?: SchemaOptions): Schema {

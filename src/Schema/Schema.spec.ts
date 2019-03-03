@@ -110,9 +110,32 @@ describe("Schema", () => {
 
 	});
 
-	//TODO do this after handling getting and setting of virtuals not just get.
 	describe("when asked to attach instance methods", () => {
 
+		it("will attach the methods that are defined", () => {
+
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const someFunc1 = function () {
+				console.log('some func 1')
+			};
+			const someFunc2 = function () {
+				console.log('some func 2')
+			};
+
+			schemaHandler.attachMethods([{
+				methodFunction: someFunc1,
+				methodName: 'someFunc1'
+			}, {
+				methodFunction: someFunc2,
+				methodName: 'someFunc2'
+			}]);
+
+
+			expect(schemaHandler.schema.methods.someFunc1).to.be.a('function');
+			expect(schemaHandler.schema.methods.someFunc2).to.be.a('function');
+
+		});
 
 	});
 
