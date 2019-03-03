@@ -22,7 +22,6 @@ export interface StaticMethod {
 	staticName: string;
 }
 
-//TODO will need a public getSchema function so user can actually return it.
 export class SchemaHandler {
 
 	readonly schema: Schema;
