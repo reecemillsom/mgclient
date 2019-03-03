@@ -6,10 +6,12 @@
   "author": "Reece Millsom",
   "license": "MIT",
   "dependencies": {
+    "lodash": "^4.17.11",
     "mongoose": "^5.4.16"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
+    "@types/lodash": "^4.14.121",
     "@types/mocha": "^5.2.6",
     "@types/mongoose": "^5.3.20",
     "chai": "^4.2.0",

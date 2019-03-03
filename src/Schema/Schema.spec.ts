@@ -47,9 +47,54 @@ describe("Schema", () => {
 
 	        it("will return a schema", () => {
 
-			  	const schemaHandler = new SchemaHandler({ name: String });
+			  	const schemaHandler: SchemaHandler = new SchemaHandler({ name: String });
 
 		  		expect(schemaHandler.schema).to.be.instanceOf(Schema);
+
+	        });
+
+	    });
+
+	});
+
+	describe("when asked to attach virtuals", () => {
+
+	    it("will take the inputted function reference and virtual name and create a virtual on the schema", () => {
+
+	        const schemaHandler: SchemaHandler = new SchemaHandler({ name: String, age: Number });
+
+	        const someFunc = function () { console.log('some func') };
+
+	        schemaHandler.attachVirtuals([{ virtualFunction: someFunc, virtualName: 'someFunc' }]);
+
+	        const savedVirtual: any = schemaHandler.schema.virtual('someFunc');
+
+		  	expect(savedVirtual.path).to.equal('someFunc');
+
+	    });
+
+	    describe("when asked to attach multiple virtuals", () => {
+
+	        it("will take the inputted functions and names and attach a virtual to the schema", () => {
+
+				const schemaHandler: SchemaHandler = new SchemaHandler({ name: String, age: Number });
+
+				const someFunc1 = function () { console.log('some func 1') };
+				const someFunc2 = function () { console.log('some func 2') };
+
+				schemaHandler.attachVirtuals([{
+				  virtualFunction: someFunc1,
+				  virtualName: 'someFunc1'
+				}, {
+				  virtualFunction: someFunc2,
+				  virtualName: 'someFunc2'
+				}]);
+
+				const firstSavedVirtual: any = schemaHandler.schema.virtual('someFunc1');
+				const secondSavedVirtual: any = schemaHandler.schema.virtual('someFunc2');
+
+				expect(firstSavedVirtual.path).to.equal('someFunc1');
+				expect(secondSavedVirtual.path).to.equal('someFunc2');
 
 	        });
 

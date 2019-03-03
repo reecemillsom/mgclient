@@ -1,5 +1,10 @@
 import { Schema, SchemaDefinition, SchemaOptions } from "mongoose";
+import { forEach } from 'lodash';
 
+export interface Virtual {
+  virtualFunction: any; //TODO this will be a function reference, see if there is a way around any type.
+  virtualName: string;
+}
 
 //TODO potentially think of better name than schema handler.
 export default class SchemaHandler {
@@ -8,6 +13,16 @@ export default class SchemaHandler {
 
   constructor(definition: SchemaDefinition, schemaOptions?: SchemaOptions) {
     this.schema = this.handleSchemaInitialisation(definition, schemaOptions);
+  }
+
+  public attachVirtuals(virtuals: Virtual[]) {
+
+	forEach(virtuals, virtual => {
+
+	  this.schema.virtual(virtual.virtualName).get(virtual.virtualFunction);
+
+	});
+
   }
 
   //TODO think about whether a way for easily adding virtuals, methods etc to the schema is viable.
