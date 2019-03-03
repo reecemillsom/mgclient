@@ -1,60 +1,60 @@
 import * as chai from 'chai';
 import { expect } from 'chai';
 import { Schema } from 'mongoose';
-import { getSchema } from './Schema';
+import SchemaHandler  from './Schema';
 
 describe("Schema", () => {
 
-    describe("when asked to get schema", () => {
+	describe("when initialising", () => {
 
-        describe("when definition isn't passed it will throw an error", () => {
+	    describe("when a falsy definition is passed", () => {
 
-			it("will throw an error", () => {
+	        it("will return an error", () => {
 
-				expect(() =>
-					getSchema(null, null)
+	            expect(() =>
+					new SchemaHandler(null)
 				).to.throw(Error, 'Invalid argument for definition parameter');
 
-			});
+	        });
 
-        });
+	    });
 
-        describe("when schema definition is not of type object	", () => {
+	    describe("when schema definition is not of type object", () => {
 
-            it("will throw an error", () => {
+	        it("will throw an error", () => {
 
-                expect(() =>
-					getSchema([] as any, null)
+	            expect(() =>
+					new SchemaHandler([] as any, null)
 				).to.throw(Error, 'Invalid schema type, must be an object');
 
-            });
+	        });
 
-        });
+	    });
 
-        describe("when definition object is empty and has no keys", () => {
+	    describe("when definition object is empty and has no keys", () => {
 
-            it("will throw an error", () => {
+	        it("will throw an error", () => {
 
-                expect(() =>
-					getSchema({} as any, null)
+	            expect(() =>
+					new SchemaHandler({} as any)
 				).to.throw(Error, 'Invalid argument, definition object must contain contents');
 
-            });
+	        });
 
-        });
+	    });
 
-        describe("when we have a valid definition", () => {
+	    describe("when we have a valid definition", () => {
 
-            it("will return schema", () => {
+	        it("will return a schema", () => {
 
-                const result = getSchema({ name: String });
+			  	const schemaHandler = new SchemaHandler({ name: String });
 
-                expect(result).to.be.instanceOf(Schema);
+		  		expect(schemaHandler.schema).to.be.instanceOf(Schema);
 
-            });
+	        });
 
-        });
+	    });
 
-    });
+	});
 
 });
