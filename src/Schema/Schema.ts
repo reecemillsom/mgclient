@@ -7,7 +7,7 @@ export enum Type {
 }
 
 export interface Virtual {
-	virtualFunction: Function; //TODO this will be a function reference, see if there is a way around any type.
+	virtualFunction: Function;
 	virtualName: string;
 	virtualType: Type;
 }
@@ -22,7 +22,6 @@ export interface StaticMethod {
 	staticName: string;
 }
 
-//TODO potentially think of better name than schema handler.
 //TODO will need a public getSchema function so user can actually return it.
 export class SchemaHandler {
 
