@@ -31,6 +31,10 @@ export class SchemaHandler {
 		this.schema = this.handleSchemaInitialisation(definition, schemaOptions);
 	}
 
+	public getSchema(): Schema {
+		return this.schema;
+	}
+
 	public attachVirtuals(virtuals: Virtual[]) {
 
 		forEach(virtuals, virtual => {

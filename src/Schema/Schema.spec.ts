@@ -56,6 +56,18 @@ describe("Schema", () => {
 
 	});
 
+	describe("when asked to get schema", () => {
+
+		it("will return the schema", () => {
+
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String});
+
+			expect(schemaHandler.getSchema()).to.equal(schemaHandler.schema);
+
+		});
+
+	});
+
 	describe("when asked to attach virtuals", () => {
 
 		it("will take the inputted function reference and virtual name and create a virtual on the schema", () => {
