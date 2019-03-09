@@ -6,7 +6,7 @@ export enum Type {
 	Set = 'set'
 }
 
-export interface Virtual {
+export interface VirtualMethod {
 	virtualFunction: Function;
 	virtualName: string;
 	virtualType: Type;
@@ -39,7 +39,7 @@ export class SchemaHandler {
 		return this.schema;
 	}
 
-	public attachVirtuals(virtuals: Virtual[]) {
+	public attachVirtuals(virtuals: VirtualMethod[]) {
 
 		forEach(virtuals, virtual => {
 
