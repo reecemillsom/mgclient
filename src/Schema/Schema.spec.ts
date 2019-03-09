@@ -181,4 +181,22 @@ describe("Schema", () => {
 
 	});
 
+	describe("when asked to attach query helpers", () => {
+
+		it("will attach query helper function to the schema", () => {
+
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const someFunc1 = function () {
+				console.log('some func 1');
+			};
+
+			schemaHandler.attachQueryHelpers([{queryFunction: someFunc1, queryName: 'someFunc1'}]);
+			
+			expect(schemaHandler.schema.query.someFunc1).to.be.a('function');
+
+		});
+
+	});
+
 });

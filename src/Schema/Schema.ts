@@ -22,6 +22,11 @@ export interface StaticMethod {
 	staticName: string;
 }
 
+export interface QueryMethod {
+	queryFunction: Function;
+	queryName: string;
+}
+
 export class SchemaHandler {
 
 	readonly schema: Schema;
@@ -64,6 +69,15 @@ export class SchemaHandler {
 
 	}
 
+	public attachQueryHelpers(querys: QueryMethod[]) {
+
+		forEach(querys, query => {
+
+			this.schema.query[query.queryName] = query.queryFunction;
+
+		});
+
+	}
 
 	private handleSchemaInitialisation(definition: SchemaDefinition, schemaOptions?: SchemaOptions): Schema {
 
