@@ -1,4 +1,5 @@
 import {model, Model, Schema} from "mongoose";
+import {ObjectId} from "bson";
 
 export class ModelHandler {
 
@@ -10,6 +11,18 @@ export class ModelHandler {
 
 	public getModel() {
 		return this.model;
+	}
+
+	public async createMultiple(documents: any[], options?: object) {
+		return await this.model.create(documents, options);
+	}
+
+	public async findById(id: ObjectId, projection?: object, options?: object) {
+		return await this.model.findById(id, {
+			...projection
+		}, {
+			...options
+		});
 	}
 
 }
