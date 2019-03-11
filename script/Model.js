@@ -15,19 +15,18 @@ const virtualFunction = function () {
 schemaHandler.attachVirtuals([{virtualFunction, virtualName: "nameAndAge", virtualType: "get"}]);
 
 const schema = schemaHandler.getSchema();
-console.log('schema>', schema);
 
 const modelHandler = new ModelHandler(schema, 'People');
 const model = modelHandler.getModel();
 
 
 const createDocument = async () => {
-	await model.create([{
+	await modelHandler.createMultiple([{
 		name: 'Reece',
 		age: 24
 	}, {
 		name: 'Jessica Moorey',
-		age: 60
+		age: 24
 	}]);
 };
 
@@ -39,3 +38,13 @@ const getDocuments = async () => {
 };
 
 getDocuments().then(documents => console.log('documents>', documents));
+
+
+const findMany = async () => {
+	return await modelHandler.findMany({
+		age: 24
+	});
+};
+
+findMany().then(foundDocuments => console.log('found docs>', foundDocuments));
+
