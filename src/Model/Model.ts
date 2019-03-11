@@ -25,4 +25,14 @@ export class ModelHandler {
 		});
 	}
 
+	public async findMany(filter: object, projection?: object, options?: object) {
+		return await this.model.find({
+			...filter
+		}, {
+			...projection
+		}, {
+			...options
+		});
+	}
+
 }

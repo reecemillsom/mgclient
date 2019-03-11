@@ -12,6 +12,7 @@ describe("ModelHandler", () => {
 	});
 
 	//TODO close the open connection.
+	//TODO destroy the collection.
 	after(async () => {
 
 	});
@@ -67,10 +68,65 @@ describe("ModelHandler", () => {
 
 	});
 
-	//TODO do this next. Similar to finding document by id.
 	describe("when asked to find documents", () => {
 
+		it("will return the documents based on the filter", async () => {
 
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const schema = schemaHandler.getSchema();
+
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName4');
+
+			await modelHandler.createMultiple([{name: 'Reece', age: 24}]);
+
+			const result = await modelHandler.findMany({
+				name: {
+					$in: ['Reece']
+				}
+			});
+
+			expect(result).to.have.length(1);
+
+		});
+
+		describe("when passed a projection", () => {
+
+			it("will find the document and only pass the projected fields back", async () => {
+
+				const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+				const schema = schemaHandler.getSchema();
+
+				const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName5');
+
+				await modelHandler.createMultiple([{name: 'Reece', age: 24}, {name: 'Jess', age: 24}]);
+
+				const result = await modelHandler.findMany({
+					age: 24
+				}, {
+					name: 1
+				});
+
+				expect(result[0]).to.contain({
+					name: 'Reece'
+				});
+
+				expect(result[1]).to.contain({
+					name: 'Jess'
+				});
+
+				expect(result[0]).not.to.contain({
+					age: 24
+				});
+
+				expect(result[1]).not.to.contain({
+					age: 24
+				});
+
+			});
+
+		});
 
 	});
 
@@ -82,7 +138,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName4');
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName6');
 
 			const created = await modelHandler.createMultiple([{name: 'Reece', age: 24}]);
 
@@ -92,28 +148,28 @@ describe("ModelHandler", () => {
 
 		});
 
-	});
+		describe("when passed a projection", () => {
 
-	describe("when passed a projection", () => {
+			it("will find the document and only pass the projected fields back", async () => {
 
-		it("will find the document and only pass the project fields back", async () => {
+				const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
 
-			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+				const schema = schemaHandler.getSchema();
 
-			const schema = schemaHandler.getSchema();
+				const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName7');
 
-			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName5');
+				const created = await modelHandler.createMultiple([{name: 'Reece', age: 24}]);
 
-			const created = await modelHandler.createMultiple([{name: 'Reece', age: 24}]);
+				const result = await modelHandler.findById(created[0]._id, {age: 1});
 
-			const result = await modelHandler.findById(created[0]._id, {age: 1});
+				expect(result).to.contain({
+					age: 24
+				});
 
-			expect(result).to.contain({
-				age: 24
-			});
+				expect(result).to.not.contain({
+					name: 'Reece'
+				});
 
-			expect(result).to.not.contain({
-				name: 'Reece'
 			});
 
 		});
