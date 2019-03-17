@@ -1,6 +1,7 @@
 const SchemaHandler = require('../dist/src/Schema/Schema').SchemaHandler;
 const ModelHandler = require('../dist/src/Model/Model').ModelHandler;
 const connectToDb = require('../dist/src/Utils/ConnectToDb').connectToDB;
+const disconnectFromDb = require('../dist/src/Utils/DisconnectFromDb').disconnectFromDb;
 
 connectToDb('mongodb://localhost:27017/test').then(() => console.log('connected')).catch((error) => console.log('error', error));
 
@@ -48,3 +49,4 @@ const findMany = async () => {
 
 findMany().then(foundDocuments => console.log('found docs>', foundDocuments));
 
+// disconnectFromDb().then(() => console.log('disconnected>')).catch(error => console.log('disconnectingError>', error));
