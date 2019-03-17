@@ -2,6 +2,7 @@ import {expect} from 'chai';
 import {ModelHandler} from "./Model";
 import {SchemaHandler} from "../Schema/Schema";
 import {connectToDB} from "../Utils/ConnectToDb";
+import {disconnectFromDb} from "../Utils/DisconnectFromDb";
 
 describe("ModelHandler", () => {
 
@@ -11,9 +12,10 @@ describe("ModelHandler", () => {
 
 	});
 
-	//TODO close the open connection.
-	//TODO destroy the collection.
+	//TODO destroy the collections created.
 	after(async () => {
+
+		await disconnectFromDb();
 
 	});
 
