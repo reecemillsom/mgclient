@@ -49,4 +49,11 @@ const findMany = async () => {
 
 findMany().then(foundDocuments => console.log('found docs>', foundDocuments));
 
+const findOne = async () => {
+	return modelHandler.updateOne({name: 'Reece'}, {age: 25});
+};
+
+findOne().then(updated => console.log('updated doc>', updated));
+
+
 // disconnectFromDb().then(() => console.log('disconnected>')).catch(error => console.log('disconnectingError>', error));

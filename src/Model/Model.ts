@@ -35,4 +35,15 @@ export class ModelHandler {
 		});
 	}
 
+	public async updateOne(filter: object, updatedFields: object, options?: object) {
+		return await this.model.findOneAndUpdate({
+			...filter
+		}, {
+			...updatedFields
+		}, {
+			new: true,
+			...options
+		});
+	}
+
 }

@@ -178,4 +178,31 @@ describe("ModelHandler", () => {
 
 	});
 
+	describe("when asked to update a single document", () => {
+
+		it("will update the targeted person with the update field information", async () => {
+
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const schema = schemaHandler.getSchema();
+
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName8');
+
+			const created = await modelHandler.createMultiple([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}]);
+
+			const result = await modelHandler.updateOne({
+				_id: created[0]._id
+			}, {
+				age: 25,
+			});
+
+			expect(result).to.contain({
+				name: 'Reece',
+				age: 25
+			});
+
+		});
+
+	});
+
 });
