@@ -61,7 +61,7 @@ describe("ModelHandler", () => {
 
 			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName3');
 
-			const result = await modelHandler.createMultiple([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}]);
+			const result = await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}]);
 
 			expect(result).to.have.length(2);
 
@@ -80,7 +80,7 @@ describe("ModelHandler", () => {
 
 			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName4');
 
-			await modelHandler.createMultiple([{name: 'Reece', age: 24}]);
+			await modelHandler.createMany([{name: 'Reece', age: 24}]);
 
 			const result = await modelHandler.findMany({
 				name: {
@@ -102,7 +102,7 @@ describe("ModelHandler", () => {
 
 				const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName5');
 
-				await modelHandler.createMultiple([{name: 'Reece', age: 24}, {name: 'Jess', age: 24}]);
+				await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 24}]);
 
 				const result = await modelHandler.findMany({
 					age: 24
@@ -142,7 +142,7 @@ describe("ModelHandler", () => {
 
 			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName6');
 
-			const created = await modelHandler.createMultiple([{name: 'Reece', age: 24}]);
+			const created = await modelHandler.createMany([{name: 'Reece', age: 24}]);
 
 			const result = await modelHandler.findById(created[0]._id);
 
@@ -160,7 +160,7 @@ describe("ModelHandler", () => {
 
 				const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName7');
 
-				const created = await modelHandler.createMultiple([{name: 'Reece', age: 24}]);
+				const created = await modelHandler.createMany([{name: 'Reece', age: 24}]);
 
 				const result = await modelHandler.findById(created[0]._id, {age: 1});
 
@@ -188,7 +188,7 @@ describe("ModelHandler", () => {
 
 			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName8');
 
-			const created = await modelHandler.createMultiple([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}]);
+			const created = await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}]);
 
 			const result = await modelHandler.updateOne({
 				_id: created[0]._id

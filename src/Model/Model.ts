@@ -13,7 +13,7 @@ export class ModelHandler {
 		return this.model;
 	}
 
-	public async createMultiple(documents: any[], options?: object) {
+	public async createMany(documents: any[], options?: object) {
 		return await this.model.create(documents, options);
 	}
 

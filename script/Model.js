@@ -22,7 +22,7 @@ const model = modelHandler.getModel();
 
 
 const createDocument = async () => {
-	await modelHandler.createMultiple([{
+	await modelHandler.createMany([{
 		name: 'Reece',
 		age: 24
 	}, {
