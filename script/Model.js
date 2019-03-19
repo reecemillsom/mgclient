@@ -55,5 +55,11 @@ const findOne = async () => {
 
 findOne().then(updated => console.log('updated doc>', updated));
 
+const findOneAndDelete = async () => {
+	return modelHandler.deleteOne(await findOne()._id);
+};
+
+findOneAndDelete().then(deleted => console.log('delected doc>', deleted));
+
 
 // disconnectFromDb().then(() => console.log('disconnected>')).catch(error => console.log('disconnectingError>', error));

@@ -46,4 +46,12 @@ export class ModelHandler {
 		});
 	}
 
+	public async deleteOne(filter: object, options?: object) {
+		return await this.model.findOneAndDelete({
+			...filter
+		}, {
+			...options
+		})
+	}
+
 }

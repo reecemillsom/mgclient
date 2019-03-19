@@ -205,4 +205,29 @@ describe("ModelHandler", () => {
 
 	});
 
+	describe("when asked to delete a single document", () => {
+
+		it("will return the deleted document", async () => {
+
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const schema = schemaHandler.getSchema();
+
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName9');
+
+			const created = await modelHandler.createMany([{name: 'Reece', age: 24}]);
+
+			const result = await modelHandler.deleteOne({
+				_id: created[0]._id
+			});
+
+			expect(result).to.contain({
+				name: 'Reece',
+				age: 24
+			});
+
+		});
+
+	});
+
 });
