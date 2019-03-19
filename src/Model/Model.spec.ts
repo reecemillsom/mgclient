@@ -230,4 +230,28 @@ describe("ModelHandler", () => {
 
 	});
 
+	describe("when asked to delete many documents", () => {
+
+		it("will find the many documents to remove", async () => {
+
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const schema = schemaHandler.getSchema();
+
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName10');
+
+			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}]);
+
+			const result = await modelHandler.deleteMany({
+				name: {
+					$in: ['Reece', 'Jess']
+				}
+			});
+
+			expect(result.n).to.equal(2);
+
+		});
+
+	});
+
 });

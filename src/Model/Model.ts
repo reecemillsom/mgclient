@@ -54,4 +54,10 @@ export class ModelHandler {
 		})
 	}
 
+	public async deleteMany(filter: object) {
+		return await this.model.deleteMany({
+			...filter
+		});
+	}
+
 }
