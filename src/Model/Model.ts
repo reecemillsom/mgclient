@@ -41,9 +41,18 @@ export class ModelHandler {
 		}, {
 			...updatedFields
 		}, {
-			new: true,
 			...options
 		});
+	}
+
+	public async updateMany(filter: object, updatedFields: object, options?: object) {
+		return await this.model.updateMany({
+			...filter
+		}, {
+			...updatedFields
+		}, {
+			...options
+		})
 	}
 
 	public async deleteOne(filter: object, options?: object) {

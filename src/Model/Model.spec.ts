@@ -198,8 +198,32 @@ describe("ModelHandler", () => {
 
 			expect(result).to.contain({
 				name: 'Reece',
+				age: 24
+			});
+
+		});
+
+	});
+
+	describe("when asked to update many documents", () => {
+
+		it("will update the documents where the filter meets", async () => {
+
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const schema = schemaHandler.getSchema();
+
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName9');
+
+			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 24}]);
+
+			const result = await modelHandler.updateMany({
+				age: 24
+			}, {
 				age: 25
 			});
+
+			expect(result.n).to.equal(2);
 
 		});
 
@@ -213,7 +237,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName9');
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName10');
 
 			const created = await modelHandler.createMany([{name: 'Reece', age: 24}]);
 
@@ -238,7 +262,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName10');
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName11');
 
 			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}]);
 
