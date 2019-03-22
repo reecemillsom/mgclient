@@ -9,6 +9,6 @@ export const dropMultipleCollections = async (collectionNames: string[]): Promis
 		return connection.db.dropCollection(collectionName);
 	});
 
-	return Promise.all(dropCollections);
+	return await Promise.all(dropCollections);
 };
 
