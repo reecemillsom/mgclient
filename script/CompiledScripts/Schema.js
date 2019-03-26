@@ -1,4 +1,4 @@
-const Schema = require('../dist/src/Schema/Schema').SchemaHandler;
+const Schema = require('../../dist/src/Schema/Schema').SchemaHandler;
 
 const schemaHandler = new Schema({name: String, age: Number}); //Works.
 
