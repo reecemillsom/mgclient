@@ -1,6 +1,6 @@
-import { SchemaHandler } from "../../src/Schema/Schema";
-import { ModelHandler } from "../../src/Model/Model";
-import { connectToDB } from "../../src/Utils/ConnectToDb";
+import {SchemaHandler} from "../../src/Schema/Schema";
+import {ModelHandler} from "../../src/Model/Model";
+import {connectToDB} from "../../src/Utils/ConnectToDb";
 import {disconnectFromDb} from "../../src/Utils/DisconnectFromDb";
 import {dropDatabase} from "../../src/Utils/DropDatabase";
 
