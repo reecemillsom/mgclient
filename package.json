@@ -1,5 +1,5 @@
 {
-  "name": "MongooseClient",
+  "name": "mongoose-client",
   "version": "1.0.0",
   "description": "Client for querying mongodb",
   "main": "index.ts",
