@@ -2,6 +2,7 @@ const SchemaHandler = require('../../dist/src/Schema/Schema').SchemaHandler;
 const ModelHandler = require('../../dist/src/Model/Model').ModelHandler;
 const connectToDb = require('../../dist/src/Utils/ConnectToDb').connectToDB;
 const disconnectFromDb = require('../../dist/src/Utils/DisconnectFromDb').disconnectFromDb;
+const dropDatabase = require('../../dist/src/Utils/DropDatabase').dropDatabase;
 
 connectToDb('mongodb://localhost:27017/test').then(() => console.log('connected')).catch((error) => console.log('error', error));
 
@@ -21,7 +22,7 @@ const modelHandler = new ModelHandler(schema, 'People');
 const model = modelHandler.getModel();
 
 
-const createDocument = async () => {
+const createDocuments = async () => {
 	await modelHandler.createMany([{
 		name: 'Reece',
 		age: 24
@@ -31,35 +32,24 @@ const createDocument = async () => {
 	}]);
 };
 
-createDocument();
 
+(async () => {
+	await createDocuments();
+	//Shows can still use native methods from mongoose.
+	const documents = await model.find();
+	console.log('allDocuments>', documents);
 
-const getDocuments = async () => {
-	return await model.find();
-};
-
-getDocuments().then(documents => console.log('documents>', documents));
-
-
-const findMany = async () => {
-	return await modelHandler.findMany({
+	const foundDocuments = await modelHandler.findMany({
 		age: 24
 	});
-};
+	console.log('foundDocuments>', foundDocuments);
 
-findMany().then(foundDocuments => console.log('found docs>', foundDocuments));
+	const updatedDocument = await modelHandler.updateOne({name: 'Reece'}, {age: 25});
+	console.log('updatedDocument>', updatedDocument);
 
-const findOne = async () => {
-	return modelHandler.updateOne({name: 'Reece'}, {age: 25});
-};
+	const deletedDocument = await modelHandler.deleteOne(updatedDocument._id);
+	console.log('deletedDocument>', deletedDocument);
 
-findOne().then(updated => console.log('updated doc>', updated));
-
-const findOneAndDelete = async () => {
-	return modelHandler.deleteOne(await findOne()._id);
-};
-
-findOneAndDelete().then(deleted => console.log('delected doc>', deleted));
-
-
-// disconnectFromDb().then(() => console.log('disconnected>')).catch(error => console.log('disconnectingError>', error));
+	await dropDatabase();
+	await disconnectFromDb();
+})();
