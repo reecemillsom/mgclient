@@ -1,5 +1,5 @@
 import {Schema, SchemaDefinition, SchemaOptions} from "mongoose";
-import {forEach} from 'lodash';
+import {forEach, fromPairs} from 'lodash';
 
 export enum Type {
 	Get = 'get',
@@ -76,6 +76,14 @@ export class SchemaHandler {
 			this.schema.query[query.queryName] = query.queryFunction;
 
 		});
+
+	}
+
+	public attachCompoundIndexes(indexes: Array<[string, number]>, options?) {
+
+		const formattedIndexes = fromPairs(indexes);
+
+		this.schema.index(formattedIndexes, options);
 
 	}
 

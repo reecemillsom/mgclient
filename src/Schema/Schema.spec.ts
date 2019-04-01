@@ -192,8 +192,22 @@ describe("Schema", () => {
 			};
 
 			schemaHandler.attachQueryHelpers([{queryFunction: someFunc1, queryName: 'someFunc1'}]);
-			
+
 			expect(schemaHandler.schema.query.someFunc1).to.be.a('function');
+
+		});
+
+	});
+
+	describe("when asked to attach compound indexes", () => {
+
+		it("will run the through the array and attach the indexes appropriately", () => {
+
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			schemaHandler.attachCompoundIndexes([['name', 1], ['age', -1]]);
+
+			expect(schemaHandler.schema.indexes()[0][0]).to.deep.equal({name: 1, age: -1});
 
 		});
 
