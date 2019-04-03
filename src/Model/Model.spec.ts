@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import {ModelHandler} from "./Model";
 import {SchemaHandler} from "../Schema/Schema";
-import {connectToDB} from "../Utils/ConnectToDb";
+import {connectToDb} from "../Utils/ConnectToDb";
 import {disconnectFromDb} from "../Utils/DisconnectFromDb";
 import {dropDatabase} from "../Utils/DropDatabase";
 
@@ -9,7 +9,7 @@ describe("ModelHandler", () => {
 
 	before(async () => {
 
-		await connectToDB('mongodb://localhost:27017/model-test');
+		await connectToDb('mongodb://localhost:27017/model-test');
 
 	});
 

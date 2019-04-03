@@ -1,6 +1,6 @@
 const SchemaHandler = require('../../dist/src/Schema/Schema').SchemaHandler;
 const ModelHandler = require('../../dist/src/Model/Model').ModelHandler;
-const connectToDb = require('../../dist/src/Utils/ConnectToDb').connectToDB;
+const connectToDb = require('../../dist/src/Utils/ConnectToDb').connectToDb;
 const disconnectFromDb = require('../../dist/src/Utils/DisconnectFromDb').disconnectFromDb;
 const dropDatabase = require('../../dist/src/Utils/DropDatabase').dropDatabase;
 

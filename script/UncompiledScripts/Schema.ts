@@ -1,10 +1,8 @@
 import {SchemaHandler, Type} from "../../src/Schema/Schema";
-import {SchemaDefinition} from "mongoose";
 
 const schemaHandler = new SchemaHandler({name: String, age: Number});
 
 console.log('schemaHandler>', schemaHandler);
-
 
 const virtualMethod = () => {
 	this.nameAngAge = 'foo' + 'bar';

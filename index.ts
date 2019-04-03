@@ -1,5 +1,5 @@
 /*Util functions*/
-import {connectToDB} from "./src/Utils/ConnectToDb";
+import {connectToDb} from "./src/Utils/ConnectToDb";
 import {disconnectFromDb} from "./src/Utils/DisconnectFromDb";
 import {dropCollection, dropMultipleCollections} from "./src/Utils/DropCollection";
 import {dropDatabase} from "./src/Utils/DropDatabase";
@@ -11,7 +11,7 @@ import {ModelHandler} from "./src/Model/Model";
 
 
 export {
-	connectToDB,
+	connectToDb,
 	disconnectFromDb,
 	dropCollection,
 	dropMultipleCollections,

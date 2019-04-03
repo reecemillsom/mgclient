@@ -1,10 +1,9 @@
-const connectToDb = require('../../dist/src/Utils/ConnectToDb').connectToDb;
-const disconnectFromDb = require('../../dist/src/Utils/DisconnectFromDb').disconnectFromDb;
-const dropDatabase = require('../../dist/src/Utils/DropDatabase').dropDatabase;
-const dropCollection = require('../../dist/src/Utils/DropCollection').dropCollection;
-const dropMultipleCollections = require('../../dist/src/Utils/DropCollection').dropMultipleCollections;
-const ModelHandler = require('../../dist/src/Model/Model').ModelHandler;
-const SchemaHandler = require('../../dist/src/Schema/Schema').SchemaHandler;
+import { connectToDb } from "../../src/Utils/ConnectToDb";
+import { disconnectFromDb } from "../../src/Utils/DisconnectFromDb";
+import { dropDatabase } from "../../src/Utils/DropDatabase";
+import { dropCollection, dropMultipleCollections } from "../../src/Utils/DropCollection";
+import { ModelHandler } from "../../src/Model/Model";
+import { SchemaHandler } from "../../src/Schema/Schema";
 
 
 (async () => {

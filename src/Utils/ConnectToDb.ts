@@ -8,7 +8,7 @@ export interface ConnectionOptions {
 	useNewUrlParser?: boolean;
 }
 
-export const connectToDB = async (connectionString: string, options?: ConnectionOptions) => {
+export const connectToDb = async (connectionString: string, options?: ConnectionOptions) => {
 	await connect(connectionString, {
 		useNewUrlParser: true,
 		...options,

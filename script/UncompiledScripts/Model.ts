@@ -1,10 +1,10 @@
 import {SchemaHandler} from "../../src/Schema/Schema";
 import {ModelHandler} from "../../src/Model/Model";
-import {connectToDB} from "../../src/Utils/ConnectToDb";
+import {connectToDb} from "../../src/Utils/ConnectToDb";
 import {disconnectFromDb} from "../../src/Utils/DisconnectFromDb";
 import {dropDatabase} from "../../src/Utils/DropDatabase";
 
-connectToDB('mongodb://localhost:27017/test').then(() => console.log('connected')).catch((error) => console.log('error', error));
+connectToDb('mongodb://localhost:27017/test').then(() => console.log('connected')).catch((error) => console.log('error', error));
 
 const schemaHandler = new SchemaHandler({name: String, age: Number});
 
