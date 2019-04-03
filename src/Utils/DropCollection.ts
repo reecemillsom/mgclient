@@ -1,4 +1,4 @@
-import { connection } from "mongoose";
+import {connection} from "mongoose";
 
 export const dropCollection = async (collectionName: string): Promise<boolean> => {
 	return await connection.db.dropCollection(collectionName);

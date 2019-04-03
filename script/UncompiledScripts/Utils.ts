@@ -1,9 +1,9 @@
-import { connectToDb } from "../../src/Utils/ConnectToDb";
-import { disconnectFromDb } from "../../src/Utils/DisconnectFromDb";
-import { dropDatabase } from "../../src/Utils/DropDatabase";
-import { dropCollection, dropMultipleCollections } from "../../src/Utils/DropCollection";
-import { ModelHandler } from "../../src/Model/Model";
-import { SchemaHandler } from "../../src/Schema/Schema";
+import {connectToDb} from "../../src/Utils/ConnectToDb";
+import {disconnectFromDb} from "../../src/Utils/DisconnectFromDb";
+import {dropDatabase} from "../../src/Utils/DropDatabase";
+import {dropCollection, dropMultipleCollections} from "../../src/Utils/DropCollection";
+import {ModelHandler} from "../../src/Model/Model";
+import {SchemaHandler} from "../../src/Schema/Schema";
 
 
 (async () => {
