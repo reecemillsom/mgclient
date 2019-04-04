@@ -11,7 +11,7 @@
     "pretty": true
   },
   "include": [
-    "src/**/*.ts",
+    "src/**/*.!(spec).ts",
     "./index.ts"
   ],
   "exclude": [
