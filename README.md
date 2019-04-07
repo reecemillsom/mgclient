@@ -70,6 +70,24 @@ There are multiple functions to use to help with attaching functions to the sche
 
 **attachStatics** - For attaching 1 or more statics at a time to the schema.
 
+**Parameter: [{ staticFunction: Function, staticName: String }]** - The format that allows attaching of statics to the schema.
+
+*staticFunction* - Expected to be a reference to a function. Ensure this is not an arrow function.
+
+*staticName* - The name of the static function that can be called on the model.
+
+**attachQueryHelpers** - For attaching query helpers to the schema.
+
+**Parameter: [{ queryFunction: Function, queryName: String }]** - The format that allows attaching of queryHelpers to the schema.
+
+*queryFunction* - Expected to be a reference to a function. Ensure this is not an arrow function.
+
+*queryName* - The name of the query helper to be called. This can be chained with other mongoose model methods. E.g. find().
+
+**attachingCompoundIndexes** - For attaching indexes which are not at the field level.
+
+**Parameter: [[nameOfField: string, sortingOrder: number]]** - Format of an array of arrays. This is to keep good format of the field name and the sorting order.
+
 ### Utility functions
    
 There are some utility functions that will allow you to easily connect to a database and also disconnect plus some other potentially helpful functions.
