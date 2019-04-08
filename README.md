@@ -37,7 +37,7 @@ The main import you will need in order to create a schema.
 Creating a new SchemaHandler is easy and when doing so will do some error checks for you.
 
 ```
-const schemaHandler = new Schema({name: String, age: Number});
+const schemaHandler = new SchemaHandler({name: String, age: Number});
 ```
     
 There are multiple functions to use to help with attaching functions to the schema once the SchemaHandler has been initialised.
@@ -87,6 +87,100 @@ There are multiple functions to use to help with attaching functions to the sche
 **attachingCompoundIndexes** - For attaching indexes which are not at the field level.
 
 **Parameter: [[nameOfField: string, sortingOrder: number]]** - Format of an array of arrays. This is to keep good format of the field name and the sorting order.
+
+### Model creation
+
+The main import you will need in order to create a schema.
+
+    * ModelHandler.
+    
+To create a model you will need the schema you just created. When you have finished attaching your virtuals and other functions to your schema call ```getSchema()``` on the schemaHandler.
+
+Once you have the schema you are ready to pass this into the modelHandler.
+    
+Creating a new ModelHandler is easy.
+
+```
+const modelHandler = new ModelHandler(schema: Schema, modelName: String);
+```
+
+To help query the model that you create, I have attached a few methods to the ModelHandler that you can make use of.
+
+    * createMany.
+    * findById.
+    * findMany.
+    * updateOne.
+    * updateMany.
+    * deleteOne.
+    * deleteMany.
+    
+**createMany** - Although the name states many, this can be used to create 1 or more documents in the corresponding collection.
+
+**Parameters:**
+
+*documents: any[]* - The shape of the documents that you wish to store in your collection.
+
+*options?: object* - Options that will be accepted by a mongoose ```create()```.
+
+**findById:** - For finding a document by _id
+
+**Parameters:**
+
+*id: ObjectId* - The objectId of the document that you wish to find.
+
+*projection?: object* - The projection to limit the number of rows coming back in the document.
+
+*options?: object* - Options that will be accepted by a mongoose ```findById()```.
+
+**findMany** - For finding many documents that match the criteria provided.
+
+**Parameters:**
+
+*filter: object* - The filter to find documents based on.
+
+*projection?: object* - The projection to limit the number of rows coming back in the document.
+
+*options?: object* - Options that will be accepted by a mongoose ```find()```.
+
+**updateOne** - Update a single document based on the filter passed in.
+
+**Parameters:**
+
+*filter: object* - The filter to find the document you wish to be updated.
+
+*updatedFields: object* - The fields and there corresponding values you wish to update to.
+
+*options?: object* - Options that will be accepted by a mongoose ```findOneAndUpdate()```.
+
+**updateMany** - Update multiple documents that match the filter criteria.
+
+**Parameters:**
+
+*filter: object* - The filter to match against in order to update the corresponding documents.
+
+*updatedFields: object* - The fields and there corresponding values you wish to update to.
+
+*options?: object* - Options that will be accepted by a mongoose ```updateMany()```.
+
+**deleteOne** - This should be used to hard delete a single document from the collection.
+
+**Parameters:**
+
+*filter: object* - The filter to match against in order to delete document from the collection.
+
+*options?: object* - Options that will be accepted by a mongoose ```findOneAndDelete()```.
+
+**deleteMany** - This should be used to hard delete many documents from the collection.
+
+**Parameters:**
+
+*filter: object* - The filter to match against in order to delete the corresponding documents.
+
+If you do not wish to use the corresponding functions above or need some different functionality, you can still get the model and call the corresponding mongoose functions.
+
+```
+cosnt model = modelHandler.getModel();
+```
 
 ### Utility functions
    
