@@ -245,11 +245,14 @@ describe("ModelHandler", () => {
 
 			const result = await modelHandler.deleteOne({
 				_id: created[0]._id
+			}, {
+				new: true
 			});
 
 			expect(result).to.contain({
 				name: 'Reece',
-				age: 24
+				age: 24,
+				deleted: true
 			});
 
 		});

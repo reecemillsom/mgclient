@@ -5,8 +5,14 @@ export class ModelHandler {
 
 	readonly model: Model<any>; //TODO not to sure what type it expects. Might need to make use of generics here.
 
-	constructor(private schema: Schema, private modelName: string) {
+	private baseQuery = {};
+
+	constructor(private schema: Schema, private modelName: string, baseQuery?: object) {
 		this.model = model(modelName, schema);
+		this.baseQuery = {
+			...baseQuery,
+			deleted: {$ne: true}
+		};
 	}
 
 	public getModel() {
@@ -27,6 +33,7 @@ export class ModelHandler {
 
 	public async findMany(filter: object, projection?: object, options?: object) {
 		return await this.model.find({
+			...this.baseQuery,
 			...filter
 		}, {
 			...projection
@@ -37,6 +44,7 @@ export class ModelHandler {
 
 	public async updateOne(filter: object, updatedFields: object, options?: object) {
 		return await this.model.findOneAndUpdate({
+			...this.baseQuery,
 			...filter
 		}, {
 			...updatedFields
@@ -47,6 +55,7 @@ export class ModelHandler {
 
 	public async updateMany(filter: object, updatedFields: object, options?: object) {
 		return await this.model.updateMany({
+			...this.baseQuery,
 			...filter
 		}, {
 			...updatedFields
@@ -56,16 +65,24 @@ export class ModelHandler {
 	}
 
 	public async deleteOne(filter: object, options?: object) {
-		return await this.model.findOneAndDelete({
+		return await this.model.findOneAndUpdate({
+			...this.baseQuery,
 			...filter
 		}, {
+			deleted: true
+		}, {
 			...options
-		})
+		});
 	}
 
-	public async deleteMany(filter: object) {
-		return await this.model.deleteMany({
+	public async deleteMany(filter: object, options?: object) {
+		return await this.model.updateMany({
+			...this.baseQuery,
 			...filter
+		}, {
+			deleted: true
+		}, {
+			...options
 		});
 	}
 

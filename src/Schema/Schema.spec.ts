@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import {Schema} from 'mongoose';
 import {SchemaHandler, Type} from './Schema';
 
-describe("Schema", () => {
+describe("SchemaHandler", () => {
 
 	describe("when initialising", () => {
 

@@ -91,7 +91,15 @@ export class SchemaHandler {
 
 		this.handleErrorCases(definition);
 
-		return new Schema(definition, schemaOptions);
+		const schema = {
+			deleted: {
+				type: Boolean,
+				default: false
+			},
+			...definition
+		};
+
+		return new Schema(schema, schemaOptions);
 
 	}
 
