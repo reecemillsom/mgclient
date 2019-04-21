@@ -162,21 +162,23 @@ To help query the model that you create, I have attached a few methods to the Mo
 
 *options?: object* - Options that will be accepted by a mongoose ```updateMany()```.
 
-**deleteOne** - This should be used to hard delete a single document from the collection.
+**deleteOne** - This should be set a deleted flag on a single document from the collection.
 
 **Parameters:**
 
 *filter: object* - The filter to match against in order to delete document from the collection.
 
-*options?: object* - Options that will be accepted by a mongoose ```findOneAndDelete()```.
+*options?: object* - Options that will be accepted by a mongoose ```findOneAndUpdate()```.
 
-**deleteMany** - This should be used to hard delete many documents from the collection.
+**deleteMany** - This should set a deleted flag on many documents from the collection.
 
 **Parameters:**
 
 *filter: object* - The filter to match against in order to delete the corresponding documents.
 
-If you do not wish to use the corresponding functions above or need some different functionality, you can still get the model and call the corresponding mongoose functions.
+*options?: object* - Options that will be accepted by a mongoose ```updateMany()```.
+
+If you do not wish to use the corresponding functions above or need some different functionality, you can still get the model and call the corresponding mongoose functions or you can extend the class and add your more specific queries.
 
 ```
 cosnt model = modelHandler.getModel();
