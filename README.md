@@ -39,6 +39,8 @@ Creating a new SchemaHandler is easy and when doing so will do some error checks
 ```
 const schemaHandler = new SchemaHandler({name: String, age: Number});
 ```
+
+As well as the schema definition you passed in, a deleted option will also be attached to the schema which will be a boolean and will have a default of false. This will mean later on when querying for documents, any documents that are 'deleted' will not be looked at or retrieved. This is good when you do not wish to hard delete from the collection sensitive data.
     
 There are multiple functions to use to help with attaching functions to the schema once the SchemaHandler has been initialised.
 
