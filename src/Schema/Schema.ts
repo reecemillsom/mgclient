@@ -27,6 +27,11 @@ export interface QueryMethod {
 	queryName: string;
 }
 
+export interface PluginMethod {
+	plugin: (schema: Schema, options: object) => void;
+	options?: object;
+}
+
 export class SchemaHandler {
 
 	readonly schema: Schema;
@@ -84,6 +89,16 @@ export class SchemaHandler {
 		const formattedIndexes = fromPairs(indexes);
 
 		this.schema.index(formattedIndexes, options);
+
+	}
+
+	public attachPlugins(plugins: PluginMethod[]) {
+
+		forEach(plugins, (plugin: PluginMethod) => {
+
+			this.schema.plugin(plugin.plugin, plugin.options || {});
+
+		});
 
 	}
 

@@ -213,4 +213,28 @@ describe("SchemaHandler", () => {
 
 	});
 
+	describe("when asked to attach plugins", () => {
+
+		it("will attach the plugins that are passed to the schema", () => {
+
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const lastMod = function lastMod(schema, options) {
+				schema.add({lastMod: Date});
+
+				schema.pre('save', function (next) {
+					this.lastMod = new Date();
+					next();
+				});
+
+			};
+
+			expect(() => {
+				schemaHandler.attachPlugins([{plugin: lastMod, options: {}}])
+			}).to.not.throw();
+
+		});
+
+	});
+
 });
