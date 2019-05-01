@@ -9,18 +9,24 @@ import {SchemaHandler} from "./src/Schema/Schema";
 import {Type, VirtualMethod, InstanceMethod, StaticMethod, QueryMethod} from "./src/Schema/Schema";
 import {ModelHandler} from "./src/Model/Model";
 
+/*Plugins*/
+import lastModified from "./src/Plugins/LastModified/LastModified";
+import autoIncrement from "./src/Plugins/AutoIncrement/AutoIncrement";
+
 
 export {
+	autoIncrement,
 	connectToDb,
 	disconnectFromDb,
 	dropCollection,
 	dropMultipleCollections,
 	dropDatabase,
+	lastModified,
 	SchemaHandler,
 	Type,
 	VirtualMethod,
 	InstanceMethod,
 	StaticMethod,
 	QueryMethod,
-	ModelHandler
+	ModelHandler,
 }
