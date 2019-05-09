@@ -11,11 +11,9 @@ import {ModelHandler} from "./src/Model/Model";
 
 /*Plugins*/
 import lastModified from "./src/Plugins/LastModified/LastModified";
-import autoIncrement from "./src/Plugins/AutoIncrement/AutoIncrement";
 
 
 export {
-	autoIncrement,
 	connectToDb,
 	disconnectFromDb,
 	dropCollection,

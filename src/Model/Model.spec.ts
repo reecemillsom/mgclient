@@ -283,4 +283,152 @@ describe("ModelHandler", () => {
 
 	});
 
+	describe("when asked to paginate", () => {
+
+		let modelHandler: ModelHandler;
+
+		before(() => {
+
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const schema = schemaHandler.getSchema();
+
+			modelHandler = new ModelHandler(schema, 'modelName12');
+
+		});
+
+		it("will return the correct results", async () => {
+
+			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}, {
+				name: 'Bob',
+				age: 30
+			}, {name: 'Bobble head', age: 19}]);
+
+			const result = await modelHandler.paginate({page: 1, pageSize: 3});
+
+			expect(result[0]).to.include({
+				name: 'Bobble head',
+				age: 19
+			});
+
+			expect(result[1]).to.include({
+				name: 'Bob',
+				age: 30
+			});
+
+			expect(result[2]).to.include({
+				name: 'Jess',
+				age: 23
+			});
+
+		});
+
+		it("will return the correct results when on a different page number", async () => {
+
+			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}, {
+				name: 'Bob',
+				age: 30
+			}, {name: 'Bobble head', age: 19}]);
+
+			const result = await modelHandler.paginate({page: 2, pageSize: 3});
+
+			expect(result[0]).to.include({
+				name: 'Bobble head',
+				age: 19
+			});
+
+			expect(result[1]).to.include({
+				name: 'Bob',
+				age: 30
+			});
+
+			expect(result[2]).to.include({
+				name: 'Jess',
+				age: 23
+			});
+
+			expect(result[3]).to.include({
+				name: 'Reece',
+				age: 24
+			});
+
+		});
+
+		it("will return the correct results when passed an ascending sort", async () => {
+
+			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}, {
+				name: 'Bob',
+				age: 30
+			}, {name: 'Bobble head', age: 19}]);
+
+			const result = await modelHandler.paginate({page: 1, pageSize: 3}, null,true);
+
+			expect(result[0]).to.include({
+				name: 'Reece',
+				age: 24
+			});
+
+			expect(result[1]).to.include({
+				name: 'Jess',
+				age: 23
+			});
+
+			expect(result[2]).to.include({
+				name: 'Bob',
+				age: 30
+			});
+
+		});
+
+		it("when given an _id and an ascending sort, will return the correct results", async () => {
+
+			const results = await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}, {
+				name: 'Bob',
+				age: 30
+			}, {name: 'Bobble head', age: 19}]);
+
+			const lastId = results[1]._id;
+
+			const result = await modelHandler.paginate({page: 1, pageSize: 3}, lastId, true);
+
+			expect(result[0]).to.include({
+				name: 'Bob',
+				age: 30
+			});
+
+			expect(result[1]).to.include({
+				name: 'Bobble head',
+				age: 19
+			});
+
+		});
+
+		it("when asked to paginate it should take into account the base query", async () => {
+
+		    await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', deleted: true, age: 23}, {
+				name: 'Bob',
+				age: 30
+			}, {name: 'Bobble head', age: 19}]);
+
+			const result = await modelHandler.paginate({page: 1, pageSize: 5});
+
+			expect(result[0]).to.include({
+				name: 'Bobble head',
+				age: 19
+			});
+
+			expect(result[1]).to.include({
+				name: 'Bob',
+				age: 30
+			});
+
+			expect(result[2]).to.include({
+				name: 'Reece',
+				age: 24
+			});
+
+		});
+
+	});
+
 });

@@ -1,6 +1,11 @@
 import {model, Model, Schema} from "mongoose";
 import {ObjectId} from "bson";
 
+export interface Page {
+	page: number;
+	pageSize: number;
+}
+
 export class ModelHandler {
 
 	readonly model: Model<any>; //TODO not to sure what type it expects. Might need to make use of generics here.
@@ -84,6 +89,33 @@ export class ModelHandler {
 		}, {
 			...options
 		});
+	}
+
+	public async paginate(pageInformation: Page, startId?: ObjectId, isAscendingSort?: boolean) {
+
+		const filter = this.getFilter(startId, isAscendingSort);
+		const sort = this.getPaginationSort(isAscendingSort);
+
+		return await this.model.find(filter)
+			.limit(pageInformation.page * pageInformation.pageSize)
+			.sort(sort);
+
+	}
+
+	private getFilter(startId: ObjectId, isAscendingSort: boolean) {
+		if (!startId) {
+			return {
+				...this.baseQuery
+			};
+		}
+
+		return !isAscendingSort ? {...this.baseQuery, _id: {$lt: startId}} : {...this.baseQuery, _id: {$gt: startId}}
+	}
+
+	private getPaginationSort(isAscendingSort: boolean) {
+
+		return !isAscendingSort ? {_id: -1} : {_id: 1};
+
 	}
 
 }
