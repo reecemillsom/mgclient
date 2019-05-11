@@ -285,19 +285,13 @@ describe("ModelHandler", () => {
 
 	describe("when asked to paginate", () => {
 
-		let modelHandler: ModelHandler;
-
-		before(() => {
+		it("will return the correct results", async () => {
 
 			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
 
 			const schema = schemaHandler.getSchema();
 
-			modelHandler = new ModelHandler(schema, 'modelName12');
-
-		});
-
-		it("will return the correct results", async () => {
+			const modelHandler = new ModelHandler(schema, 'modelName12');
 
 			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}, {
 				name: 'Bob',
@@ -324,6 +318,12 @@ describe("ModelHandler", () => {
 		});
 
 		it("will return the correct results when on a different page number", async () => {
+
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const schema = schemaHandler.getSchema();
+
+			const modelHandler = new ModelHandler(schema, 'modelName13');
 
 			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}, {
 				name: 'Bob',
@@ -356,12 +356,18 @@ describe("ModelHandler", () => {
 
 		it("will return the correct results when passed an ascending sort", async () => {
 
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const schema = schemaHandler.getSchema();
+
+			const modelHandler = new ModelHandler(schema, 'modelName14');
+
 			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}, {
 				name: 'Bob',
 				age: 30
 			}, {name: 'Bobble head', age: 19}]);
 
-			const result = await modelHandler.paginate({page: 1, pageSize: 3}, null,true);
+			const result = await modelHandler.paginate({page: 1, pageSize: 3}, {}, null, true);
 
 			expect(result[0]).to.include({
 				name: 'Reece',
@@ -382,6 +388,12 @@ describe("ModelHandler", () => {
 
 		it("when given an _id and an ascending sort, will return the correct results", async () => {
 
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const schema = schemaHandler.getSchema();
+
+			const modelHandler = new ModelHandler(schema, 'modelName15');
+
 			const results = await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}, {
 				name: 'Bob',
 				age: 30
@@ -389,7 +401,7 @@ describe("ModelHandler", () => {
 
 			const lastId = results[1]._id;
 
-			const result = await modelHandler.paginate({page: 1, pageSize: 3}, lastId, true);
+			const result = await modelHandler.paginate({page: 1, pageSize: 3}, {}, lastId, true);
 
 			expect(result[0]).to.include({
 				name: 'Bob',
@@ -405,7 +417,13 @@ describe("ModelHandler", () => {
 
 		it("when asked to paginate it should take into account the base query", async () => {
 
-		    await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', deleted: true, age: 23}, {
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const schema = schemaHandler.getSchema();
+
+			const modelHandler = new ModelHandler(schema, 'modelName16');
+
+			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', deleted: true, age: 23}, {
 				name: 'Bob',
 				age: 30
 			}, {name: 'Bobble head', age: 19}]);
@@ -426,6 +444,36 @@ describe("ModelHandler", () => {
 				name: 'Reece',
 				age: 24
 			});
+
+		});
+
+		it("when passed a filter will also return results based on that", async () => {
+
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const schema = schemaHandler.getSchema();
+
+			const modelHandler = new ModelHandler(schema, 'modelName17');
+
+			await modelHandler.createMany([{name: 'Reece', age: 19}, {name: 'Jess', deleted: true, age: 23}, {
+				name: 'Bob',
+				age: 30
+			}, {name: 'Bobble head', age: 19}]);
+
+
+			const results = await modelHandler.paginate({page: 1, pageSize: 3}, {age: 19});
+
+			expect(results[0]).to.include({
+				name: 'Bobble head',
+				age: 19
+			});
+
+			expect(results[1]).to.include({
+				name: 'Reece',
+				age: 19
+			});
+
+			expect(results).to.have.length(2);
 
 		});
 

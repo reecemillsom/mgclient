@@ -91,25 +91,29 @@ export class ModelHandler {
 		});
 	}
 
-	public async paginate(pageInformation: Page, startId?: ObjectId, isAscendingSort?: boolean) {
+	public async paginate(pageInformation: Page, filter: object = {}, startId?: ObjectId, isAscendingSort?: boolean) {
 
-		const filter = this.getFilter(startId, isAscendingSort);
+		const findFilter = this.getFilter(filter, startId, isAscendingSort);
 		const sort = this.getPaginationSort(isAscendingSort);
 
-		return await this.model.find(filter)
+		return await this.model.find(findFilter)
 			.limit(pageInformation.page * pageInformation.pageSize)
 			.sort(sort);
 
 	}
 
-	private getFilter(startId: ObjectId, isAscendingSort: boolean) {
+	private getFilter(filter: object, startId: ObjectId, isAscendingSort: boolean) {
 		if (!startId) {
 			return {
-				...this.baseQuery
+				...this.baseQuery,
+				...filter
 			};
 		}
 
-		return !isAscendingSort ? {...this.baseQuery, _id: {$lt: startId}} : {...this.baseQuery, _id: {$gt: startId}}
+		return !isAscendingSort ? {...this.baseQuery, ...filter, _id: {$lt: startId}} : {
+			...this.baseQuery, ...filter,
+			_id: {$gt: startId}
+		}
 	}
 
 	private getPaginationSort(isAscendingSort: boolean) {
