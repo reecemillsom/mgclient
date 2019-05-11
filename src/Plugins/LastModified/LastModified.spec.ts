@@ -77,4 +77,23 @@ describe("when asked to attach last modified plugin", () => {
 
 	});
 
+	describe("when multiple documents are created", () => {
+
+		it("will create the last modified on each document", async () => {
+
+			const personDocuments = await modelHandler.createMany([{
+				name: 'Reece',
+				age: 24
+			}, {
+				name: 'Jess',
+				age: 24
+			}]);
+
+			expect(personDocuments[0].lastModified).to.be.instanceOf(Date);
+			expect(personDocuments[1].lastModified).to.be.instanceOf(Date);
+
+		});
+
+	});
+
 });
