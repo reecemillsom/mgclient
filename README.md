@@ -116,6 +116,7 @@ To help query the model that you create, I have attached a few methods to the Mo
     * updateMany.
     * deleteOne.
     * deleteMany.
+    * paginate.
     
 **createOne** - This is used to create a single document in a collection.
 
@@ -188,6 +189,19 @@ To help query the model that you create, I have attached a few methods to the Mo
 *filter: object* - The filter to match against in order to delete the corresponding documents.
 
 *options?: object* - Options that will be accepted by a mongoose ```updateMany()```.
+
+**paginate** - This allows for limiting down the number of responses from the database into batches.
+
+**Parameters:**
+
+*pageInformation: Page = { page: number, pageSize: number }* - So we know when to start paginating from and how many results to send back.
+
+*filter: object* - The filter to match against in order to get results. If falsy value is passed will default to empty object.
+
+*startId?: ObjectId* - Providing a startId allows for more efficient pagination. This allows for quicker ranges to be found and does so by the _.id field which is indexed by default.
+
+*isAscendingSort?: boolean* - Determines whether to show the most recent documents first or least. If ascending then least recent documents first otherwise most recent.
+
 
 If you do not wish to use the corresponding functions above or need some different functionality, you can still get the model and call the corresponding mongoose functions or you can extend the class and add your more specific queries.
 
