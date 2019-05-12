@@ -1,7 +1,7 @@
 {
   "name": "mongoose-client",
   "version": "1.0.0",
-  "description": "Client for querying mongodb",
+  "description": "Mongoose wrapper for querying mongodb. A structured architecture to allow for extensibility. Implementation provides interfaces to both schema and model level code.",
   "main": "index.ts",
   "author": "Reece Millsom",
   "license": "MIT",
