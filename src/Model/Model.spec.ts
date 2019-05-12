@@ -53,6 +53,30 @@ describe("ModelHandler", () => {
 
 	});
 
+	describe("when asked to create a single document", () => {
+
+		it("will create the document correctly", async () => {
+
+			const schemaHandler: SchemaHandler = new SchemaHandler({name: String, age: Number});
+
+			const schema = schemaHandler.getSchema();
+
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName3');
+
+			const result = await modelHandler.createOne({
+				name: 'Reece',
+				age: 24
+			});
+
+			expect(result).to.include({
+				name: 'Reece',
+				age: 24
+			});
+
+		});
+
+	});
+
 	describe("when asked to create documents", () => {
 
 		it("will accept an array of documents and create accordingly", async () => {
@@ -61,7 +85,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName3');
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName4');
 
 			const result = await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}]);
 
@@ -80,7 +104,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName4');
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName5');
 
 			await modelHandler.createMany([{name: 'Reece', age: 24}]);
 
@@ -102,7 +126,7 @@ describe("ModelHandler", () => {
 
 				const schema = schemaHandler.getSchema();
 
-				const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName5');
+				const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName6');
 
 				await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 24}]);
 
@@ -142,7 +166,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName6');
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName7');
 
 			const created = await modelHandler.createMany([{name: 'Reece', age: 24}]);
 
@@ -160,7 +184,7 @@ describe("ModelHandler", () => {
 
 				const schema = schemaHandler.getSchema();
 
-				const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName7');
+				const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName8');
 
 				const created = await modelHandler.createMany([{name: 'Reece', age: 24}]);
 
@@ -188,7 +212,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName8');
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName9');
 
 			const created = await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}]);
 
@@ -215,7 +239,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName9');
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName10');
 
 			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 24}]);
 
@@ -239,7 +263,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName10');
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName11');
 
 			const created = await modelHandler.createMany([{name: 'Reece', age: 24}]);
 
@@ -267,7 +291,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName11');
+			const modelHandler: ModelHandler = new ModelHandler(schema, 'modelName12');
 
 			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}]);
 
@@ -291,7 +315,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler = new ModelHandler(schema, 'modelName12');
+			const modelHandler = new ModelHandler(schema, 'modelName13');
 
 			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}, {
 				name: 'Bob',
@@ -323,7 +347,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler = new ModelHandler(schema, 'modelName13');
+			const modelHandler = new ModelHandler(schema, 'modelName14');
 
 			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}, {
 				name: 'Bob',
@@ -360,7 +384,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler = new ModelHandler(schema, 'modelName14');
+			const modelHandler = new ModelHandler(schema, 'modelName15');
 
 			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}, {
 				name: 'Bob',
@@ -392,7 +416,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler = new ModelHandler(schema, 'modelName15');
+			const modelHandler = new ModelHandler(schema, 'modelName16');
 
 			const results = await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', age: 23}, {
 				name: 'Bob',
@@ -421,7 +445,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler = new ModelHandler(schema, 'modelName16');
+			const modelHandler = new ModelHandler(schema, 'modelName17');
 
 			await modelHandler.createMany([{name: 'Reece', age: 24}, {name: 'Jess', deleted: true, age: 23}, {
 				name: 'Bob',
@@ -453,7 +477,7 @@ describe("ModelHandler", () => {
 
 			const schema = schemaHandler.getSchema();
 
-			const modelHandler = new ModelHandler(schema, 'modelName17');
+			const modelHandler = new ModelHandler(schema, 'modelName18');
 
 			await modelHandler.createMany([{name: 'Reece', age: 19}, {name: 'Jess', deleted: true, age: 23}, {
 				name: 'Bob',

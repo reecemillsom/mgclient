@@ -8,7 +8,7 @@ export interface Page {
 
 export class ModelHandler {
 
-	readonly model: Model<any>; //TODO not to sure what type it expects. Might need to make use of generics here.
+	readonly model: Model<any>;
 
 	private baseQuery = {};
 
@@ -22,6 +22,10 @@ export class ModelHandler {
 
 	public getModel() {
 		return this.model;
+	}
+
+	public async createOne(document: object, options?: object) {
+		return await this.model.create(document, options);
 	}
 
 	public async createMany(documents: any[], options?: object) {
