@@ -209,6 +209,20 @@ If you do not wish to use the corresponding functions above or need some differe
 const model = modelHandler.getModel();
 ```
 
+**Extending model handler**
+
+If there are queries that you wish to do but do not get provided out of the box you can extend the model handler and add your functions to the class. You will have access to the model from the parent and the baseQuery which I recommend you use to keep in line with the functions that are already given.
+
+```
+export default class TestClass extends ModelHandler {
+
+    async testFunc() {
+       ...someLogic
+    }
+
+}
+```
+
 ### Utility functions
    
 There are some utility functions that will allow you to easily connect to a database and also disconnect plus some other potentially helpful functions.

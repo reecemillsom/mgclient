@@ -10,7 +10,7 @@ export class ModelHandler {
 
 	readonly model: Model<any>;
 
-	private baseQuery = {};
+	protected baseQuery = {};
 
 	constructor(private schema: Schema, private modelName: string, baseQuery?: object) {
 		this.model = model(modelName, schema);
