@@ -108,6 +108,7 @@ const modelHandler = new ModelHandler(schema: Schema, modelName: String);
 
 To help query the model that you create, I have attached a few methods to the ModelHandler that you can make use of.
 
+    * createOne.
     * createMany.
     * findById.
     * findMany.
@@ -116,7 +117,15 @@ To help query the model that you create, I have attached a few methods to the Mo
     * deleteOne.
     * deleteMany.
     
-**createMany** - Although the name states many, this can be used to create 1 or more documents in the corresponding collection.
+**createOne** - This is used to create a single document in a collection.
+
+**Parameters:**
+
+*document: object* - The shape of the document you wish to stop in the collection.
+
+*options?: object* - Options that will be accepted by a mongoose ```create()```.
+    
+**createMany** - This is used to create many documents in a collection.
 
 **Parameters:**
 
