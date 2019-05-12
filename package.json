@@ -21,7 +21,7 @@
   },
   "keywords": [
     "mongoose",
-    "mongoose-client",
+    "mongoose-client"
   ],
   "scripts": {
     "tsc": "tsc",
