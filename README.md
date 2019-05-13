@@ -49,6 +49,7 @@ There are multiple functions to use to help with attaching functions to the sche
     * attachStatics.
     * attachQueryHandlers.
     * attachCompoundIndexes.
+    * attachPlugins.
     
 **attachVirtuals** - For attaching 1 or more virtuals at a time to the schema.
 
@@ -89,6 +90,10 @@ There are multiple functions to use to help with attaching functions to the sche
 **attachingCompoundIndexes** - For attaching indexes which are not at the field level.
 
 **Parameter: [[nameOfField: string, sortingOrder: number]]** - Format of an array of arrays. This is to keep good format of the field name and the sorting order.
+
+**attachPlugins** - For attaching plugins to the schema, in order to do things on save, update or whatever your needs are.
+
+**Parameter: [{ plugin: (schema, options) => void, options?: object}]** - Format of an array of plugins. plugin must be a reference to a function and options are optional to pass to the plugin. 
 
 ### Model creation
 
