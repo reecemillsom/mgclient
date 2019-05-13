@@ -6,7 +6,7 @@ services:
 
 before_install:
   - docker pull mongo
-  - docker run -d -p 127.0.0.27017:4567 mongo
+  - docker run -d -p 27017:27017 mongo
   - docker container ls
 
 install:
