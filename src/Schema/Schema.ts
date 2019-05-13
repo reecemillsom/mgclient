@@ -1,7 +1,7 @@
 import {Schema, SchemaDefinition, SchemaOptions} from "mongoose";
 import {forEach, fromPairs} from 'lodash';
 
-export enum Type { //TODO this should probably be called VirtualType rather than just Type.
+export enum VirtualType {
 	Get = 'get',
 	Set = 'set'
 }
@@ -9,7 +9,7 @@ export enum Type { //TODO this should probably be called VirtualType rather than
 export interface VirtualMethod {
 	virtualFunction: Function;
 	virtualName: string;
-	virtualType: Type;
+	virtualType: VirtualType;
 }
 
 export interface InstanceMethod {

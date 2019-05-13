@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import {Schema} from 'mongoose';
-import {SchemaHandler, Type} from './Schema';
+import {SchemaHandler, VirtualType} from './Schema';
 
 describe("SchemaHandler", () => {
 
@@ -78,7 +78,7 @@ describe("SchemaHandler", () => {
 				console.log('some func')
 			};
 
-			schemaHandler.attachVirtuals([{virtualFunction: someFunc, virtualName: 'someFunc', virtualType: Type.Set}]);
+			schemaHandler.attachVirtuals([{virtualFunction: someFunc, virtualName: 'someFunc', virtualType: VirtualType.Set}]);
 
 			const savedVirtual: any = schemaHandler.schema.virtual('someFunc');
 
@@ -103,11 +103,11 @@ describe("SchemaHandler", () => {
 				schemaHandler.attachVirtuals([{
 					virtualFunction: someFunc1,
 					virtualName: 'someFunc1',
-					virtualType: Type.Get
+					virtualType: VirtualType.Get
 				}, {
 					virtualFunction: someFunc2,
 					virtualName: 'someFunc2',
-					virtualType: Type.Get
+					virtualType: VirtualType.Get
 				}]);
 
 				const firstSavedVirtual: any = schemaHandler.schema.virtual('someFunc1');
