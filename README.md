@@ -2,6 +2,10 @@
 
 <https://github.com/reecemillsom/mongoose-client>
 
+[![codecov](https://img.shields.io/travis/reecemillsom/mongoose-client.svg)](https://codecov.io/gh/reecemillsom/mongoose-client)
+[![codecov](https://img.shields.io/codecov/c/github/reecemillsom/mongoose-client.svg)](https://codecov.io/gh/reecemillsom/mongoose-client)
+[![codecov](https://img.shields.io/david/reecemillsom/mongoose-client.svg)](https://codecov.io/gh/reecemillsom/mongoose-client)
+
 
 ## Point to note
 
