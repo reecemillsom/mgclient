@@ -69,7 +69,7 @@ There are multiple functions to use to help with attaching functions to the sche
 
 **attachMethods** - For attaching 1 or more methods at a time to the schema.
 
-**Parameter: [{ methodFunction: Function, methodName: String }]** - The format for attaching methods to the schema.
+**Parameter: [{ methodFunction: Function, methodName: String }]** - The format for attaching methods to the schema. Ensure this doesn't use an arrow function.
 
 *methodFunction* - Expected to be a reference to a function
 
