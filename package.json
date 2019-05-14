@@ -1,7 +1,7 @@
 {
-  "name": "mongoose-client",
+  "name": "mclient",
   "version": "1.0.0",
-  "description": "Mongoose wrapper for querying mongodb. A structured architecture to allow for extensibility. Implementation provides interfaces to both schema and model level code.",
+  "description": "mclient is a mongoose client that conveniently supports CRUD functionality. Its design allows for extensibility for more specific queries.",
   "main": "index.ts",
   "author": "Reece Millsom",
   "license": "MIT",
@@ -22,8 +22,10 @@
     "typescript": "^3.3.3333"
   },
   "keywords": [
+    "mongoose-client",
     "mongoose",
-    "mongoose-client"
+    "mongodb",
+    "mongo"
   ],
   "scripts": {
     "tsc": "tsc",
