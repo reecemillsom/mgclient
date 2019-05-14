@@ -2,9 +2,9 @@
 
 <https://github.com/reecemillsom/mongoose-client>
 
-[![codecov](https://img.shields.io/travis/reecemillsom/mclient.svg)](https://codecov.io/gh/reecemillsom/mclient)
-[![codecov](https://img.shields.io/codecov/c/github/reecemillsom/mclient.svg)](https://codecov.io/gh/reecemillsom/mclient)
-[![codecov](https://img.shields.io/david/reecemillsom/mclient.svg)](https://codecov.io/gh/reecemillsom/mclient)
+[![codecov](https://img.shields.io/travis/reecemillsom/mgclient.svg)](https://codecov.io/gh/reecemillsom/mgclient)
+[![codecov](https://img.shields.io/codecov/c/github/reecemillsom/mgclient.svg)](https://codecov.io/gh/reecemillsom/mgclient)
+[![codecov](https://img.shields.io/david/reecemillsom/mgclient.svg)](https://codecov.io/gh/reecemillsom/mgclient)
 
 
 ## Point to note

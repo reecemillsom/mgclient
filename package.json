@@ -1,7 +1,7 @@
 {
-  "name": "mclient",
+  "name": "mgclient",
   "version": "1.0.0",
-  "description": "mclient is a mongoose client that conveniently supports CRUD functionality. Its design allows for extensibility for more specific queries.",
+  "description": "mgclient is a mongoose client that conveniently supports CRUD functionality. Its design allows for extensibility for more specific queries.",
   "main": "index.ts",
   "author": "Reece Millsom",
   "license": "ISC",
