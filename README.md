@@ -1,6 +1,6 @@
 **Repository**
 
-<https://github.com/reecemillsom/mongoose-client>
+<https://github.com/reecemillsom/mgclient>
 
 [![codecov](https://img.shields.io/travis/reecemillsom/mgclient.svg)](https://codecov.io/gh/reecemillsom/mgclient)
 [![codecov](https://img.shields.io/codecov/c/github/reecemillsom/mgclient.svg)](https://codecov.io/gh/reecemillsom/mgclient)
