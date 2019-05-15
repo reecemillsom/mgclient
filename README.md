@@ -42,8 +42,14 @@ The main import you will need in order to create a schema.
 Creating a new SchemaHandler is easy and when doing so will do some error checks for you.
 
 ```
-const schemaHandler = new SchemaHandler({name: String, age: Number});
+const schemaHandler = new SchemaHandler(definition: SchemaDefinition, schemaOptions?: SchemaOptions);
 ```
+
+**Parameters:**
+
+*definition: SchemaDefinition* - The shape that you wish the documents to take in the collection.
+
+*schemaOptions?: SchemaOptions* - For options that can be passed to the schema check: <https://mongoosejs.com/docs/guide.html#options>
 
 As well as the schema definition you passed in, a deleted option will also be attached to the schema which will be a boolean and will have a default of false. This will mean later on when querying for documents, any documents that are 'deleted' will not be looked at or retrieved. This is good when you do not wish to hard delete from the collection sensitive data.
     
@@ -113,8 +119,16 @@ Once you have the schema you are ready to pass this into the modelHandler.
 Creating a new ModelHandler is easy.
 
 ```
-const modelHandler = new ModelHandler(schema: Schema, modelName: String);
+const modelHandler = new ModelHandler(schema: Schema, modelName: String, baseQuery?: Object);
 ```
+
+**Parameters:**
+
+*schema: Schema* - The schema parameter is the value that gets returned from ```schemaHandler.getSchema();``` 
+
+*modelName: String* - The name you wish to call your collection. For good practice should being with a capital letter. <https://mongoosejs.com/docs/models.html#compiling>
+
+*baseQuery?: Object* - The baseQuery to use when finding, updating, deleting or paginating documents. If there is something you wish to filter by in all query types then this is the place to add it.
 
 To help query the model that you create, I have attached a few methods to the ModelHandler that you can make use of.
 
