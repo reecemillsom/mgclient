@@ -1,6 +1,5 @@
-import {disconnect} from "mongoose";
-
+import { disconnect } from "mongoose";
 
 export const disconnectFromDb = async () => {
-	return await disconnect();
+  return await disconnect();
 };

@@ -57,5 +57,6 @@
     "sourceMap": true,
     "instrument": true,
     "report-dir": "./coverage"
-  }
+  },
+  "packageManager": "yarn@3.5.0"
 }
