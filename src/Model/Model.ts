@@ -1,5 +1,5 @@
-import { model, Model, Schema } from "mongoose";
 import { ObjectId } from "bson";
+import { model, Model, Schema, SortOrder } from "mongoose";
 
 export interface Page {
   page: number;
@@ -28,15 +28,15 @@ export class ModelHandler {
   }
 
   public async createOne(document: object, options?: object) {
-    return await this.model.create(document, options);
+    return this.model.create(document, options);
   }
 
   public async createMany(documents: any[], options?: object) {
-    return await this.model.create(documents, options);
+    return this.model.create(documents, options);
   }
 
   public async findById(id: ObjectId, projection?: object, options?: object) {
-    return await this.model.findById(
+    return this.model.findById(
       id,
       {
         ...projection,
@@ -48,7 +48,7 @@ export class ModelHandler {
   }
 
   public async findMany(filter: object, projection?: object, options?: object) {
-    return await this.model.find(
+    return this.model.find(
       {
         ...this.baseQuery,
         ...filter,
@@ -67,7 +67,7 @@ export class ModelHandler {
     updatedFields: object,
     options?: object
   ) {
-    return await this.model.findOneAndUpdate(
+    return this.model.findOneAndUpdate(
       {
         ...this.baseQuery,
         ...filter,
@@ -86,7 +86,7 @@ export class ModelHandler {
     updatedFields: object,
     options?: object
   ) {
-    return await this.model.updateMany(
+    return this.model.updateMany(
       {
         ...this.baseQuery,
         ...filter,
@@ -101,7 +101,7 @@ export class ModelHandler {
   }
 
   public async deleteOne(filter: object, options?: object) {
-    return await this.model.findOneAndUpdate(
+    return this.model.findOneAndUpdate(
       {
         ...this.baseQuery,
         ...filter,
@@ -116,7 +116,7 @@ export class ModelHandler {
   }
 
   public async deleteMany(filter: object, options?: object) {
-    return await this.model.updateMany(
+    return this.model.updateMany(
       {
         ...this.baseQuery,
         ...filter,
@@ -139,7 +139,7 @@ export class ModelHandler {
     const findFilter = this.getFilter(filter, startId, isAscendingSort);
     const sort = this.getPaginationSort(isAscendingSort);
 
-    return await this.model
+    return this.model
       .find(findFilter)
       .limit(pageInformation.page * pageInformation.pageSize)
       .sort(sort);
@@ -166,7 +166,9 @@ export class ModelHandler {
         };
   }
 
-  private getPaginationSort(isAscendingSort: boolean) {
+  private getPaginationSort(isAscendingSort: boolean): {
+    [key: string]: SortOrder;
+  } {
     return !isAscendingSort ? { _id: -1 } : { _id: 1 };
   }
 }

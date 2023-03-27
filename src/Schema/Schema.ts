@@ -1,36 +1,17 @@
-import { Schema, SchemaDefinition, SchemaOptions } from "mongoose";
+import {
+  Schema,
+  SchemaDefinition,
+  SchemaOptions,
+  IndexDirection,
+} from "mongoose";
 import { forEach, fromPairs } from "lodash";
-
-export enum VirtualType {
-  Get = "get",
-  Set = "set",
-}
-
-export interface VirtualMethod {
-  virtualFunction: Function;
-  virtualName: string;
-  virtualType: VirtualType;
-}
-
-export interface InstanceMethod {
-  methodFunction: Function;
-  methodName: string;
-}
-
-export interface StaticMethod {
-  staticFunction: Function;
-  staticName: string;
-}
-
-export interface QueryMethod {
-  queryFunction: Function;
-  queryName: string;
-}
-
-export interface PluginMethod {
-  plugin: (schema: Schema, options: object) => void;
-  options?: object;
-}
+import {
+  InstanceMethod,
+  PluginMethod,
+  QueryMethod,
+  StaticMethod,
+  VirtualMethod,
+} from "../types/interfaces";
 
 export class SchemaHandler {
   readonly schema: Schema;
@@ -53,30 +34,33 @@ export class SchemaHandler {
 
   public attachMethods(methods: InstanceMethod[]) {
     forEach(methods, (method) => {
-      this.schema.methods[method.methodName] = method.methodFunction;
+      this.schema.method(method.methodName, method.methodFunction);
     });
   }
 
   public attachStatics(statics: StaticMethod[]) {
     forEach(statics, (stat) => {
-      this.schema.statics[stat.staticName] = stat.staticFunction;
+      this.schema.static(stat.staticName, stat.staticFunction);
     });
   }
 
-  public attachQueryHelpers(querys: QueryMethod[]) {
-    forEach(querys, (query) => {
+  public attachQueryHelpers(queries: QueryMethod[]) {
+    forEach(queries, (query) => {
       this.schema.query[query.queryName] = query.queryFunction;
     });
   }
 
-  public attachCompoundIndexes(indexes: Array<[string, number]>, options?) {
+  public attachCompoundIndexes(
+    indexes: Array<[string, IndexDirection]>,
+    options?
+  ) {
     const formattedIndexes = fromPairs(indexes);
 
     this.schema.index(formattedIndexes, options);
   }
 
   public attachPlugins(plugins: PluginMethod[]) {
-    forEach(plugins, (plugin: PluginMethod) => {
+    forEach(plugins, (plugin) => {
       this.schema.plugin(plugin.plugin, plugin.options || {});
     });
   }

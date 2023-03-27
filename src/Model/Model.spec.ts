@@ -269,7 +269,7 @@ describe("ModelHandler", () => {
         }
       );
 
-      expect(result.n).to.equal(2);
+      expect(result.modifiedCount).to.equal(2);
     });
   });
 
@@ -333,7 +333,7 @@ describe("ModelHandler", () => {
         },
       });
 
-      expect(result.n).to.equal(2);
+      expect(result.modifiedCount).to.equal(2);
     });
   });
 

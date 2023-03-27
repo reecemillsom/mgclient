@@ -189,7 +189,7 @@ describe("SchemaHandler", () => {
         { queryFunction: someFunc1, queryName: "someFunc1" },
       ]);
 
-      expect(schemaHandler.schema.query.someFunc1).to.be.a("function");
+      expect((schemaHandler.schema.query as any).someFunc1).to.be.a("function");
     });
   });
 
