@@ -1,6 +1,7 @@
 import { expect } from "chai";
 import { Schema } from "mongoose";
-import { SchemaHandler, VirtualType } from "./Schema";
+import { SchemaHandler } from "./Schema";
+import { VirtualType } from "../types/enums";
 
 describe("SchemaHandler", () => {
   describe("when initialising", () => {

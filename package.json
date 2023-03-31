@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "tsc": "tsc",
-    "test": "mocha -r ts-node/register src/**/*.spec.ts",
+    "test": "mocha -r ts-node/register src/**/*.spec.ts --",
     "coverage": "npm run tsc && nyc npm run test"
   },
   "nyc": {

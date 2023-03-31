@@ -27,7 +27,7 @@ export class ModelHandler {
     return this.model;
   }
 
-  public async createOne(document: object, options?: object) {
+  public async createOne(document: object, options: object = {}) {
     return this.model.create(document, options);
   }
 

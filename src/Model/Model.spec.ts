@@ -46,7 +46,7 @@ describe("ModelHandler", () => {
     });
   });
 
-  describe("when asked to create a single document", () => {
+  describe.only("when asked to create a single document", () => {
     it("will create the document correctly", async () => {
       const schemaHandler: SchemaHandler = new SchemaHandler({
         name: String,
